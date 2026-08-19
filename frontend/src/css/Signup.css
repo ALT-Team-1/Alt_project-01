@@ -1,0 +1,41 @@
+main{
+    width:510px;
+    height: 610px;
+    margin: 60px auto;
+}
+
+#maintext{
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 30px;
+}
+input{
+    width: 380px;
+    height: 45px;
+    border: 0.4px solid rgb(197, 196, 196);
+    border-radius: 5px;
+    font-size: 15px;
+    padding-left: 10px;
+}
+#input_area{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+#submitbutton{
+    width: 380px;
+    height: 50px;
+    background-color: black;
+    color: white;
+    border-radius: 16px;
+    font-size: 16px;
+}
+
+#sign_no_account{
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}

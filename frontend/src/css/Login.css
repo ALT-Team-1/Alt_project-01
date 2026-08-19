@@ -1,0 +1,66 @@
+main{
+    width:510px;
+    height: 610px;
+    margin: 60px auto;
+    position: relative;
+}
+#main_text{
+    font-size: 40px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 10%;
+}
+#email_div{
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translateX(-50%);
+}
+
+.input{
+    width: 380px;
+    height: 45px;
+    border: 0.4px solid rgb(197, 196, 196);
+    border-radius: 5px;
+    font-size: 15px;
+    padding-left: 10px;
+}
+
+#password_div{
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    transform: translateX(-50%);
+}
+
+#submit_button{
+    position: absolute;
+    width: 380px;
+    height: 50px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 16px;
+    left: 50%;
+    top: 65%;
+    transform: translateX(-50%);
+    font-size: 16px;
+}
+#no_account{
+    position: absolute;
+    left: 50%;
+    top: 75%;
+    transform: translateX(-50%);
+    font-size: 14px;
+}
+#no_account_text{
+    padding-right: 2px;
+}  
+#go_signup{
+    color: black;
+}
+.sys_msg{
+    display: flex;
+    justify-content: center;
+}
