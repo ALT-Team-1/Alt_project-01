@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   createPost,
   deletePost,
@@ -107,10 +108,14 @@ export default function HomePage() {
     }
   };
 
+
+
+
   return (
     <main className="home-page">
-      <h1>게시판</h1>
-
+      <h1>Alt-과제 게시판</h1>
+        <Link to="/signup">회원가입</Link>
+        <Link to="/login">로그인</Link>
       <section className="post-create">
         <h2>게시글 작성</h2>
 
