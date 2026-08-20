@@ -1,0 +1,70 @@
+.home-page {
+  width: calc(100% - 32px);
+  max-width: 700px;
+  margin: 50px auto;
+}
+
+.home-page input,
+.home-page textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.home-page textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.post-create form,
+.post-detail form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.home-page button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.post-list {
+  margin-top: 40px;
+}
+
+.post-item {
+  display: flex;
+  width: 100%;
+  margin-top: 10px;
+  justify-content: space-between;
+  text-align: left;
+  background-color: #f4f4f4;
+}
+
+.post-detail {
+  margin-top: 30px;
+  padding: 24px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+}
+
+.post-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+
+
+
+
+.success-message {
+  color: green;
+}
+.error-message {
+  color: red;
+}
