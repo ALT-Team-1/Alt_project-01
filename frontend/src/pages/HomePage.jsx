@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   createPost,
   deletePost,
@@ -10,6 +10,9 @@ import {
 import "../css/Home.css";
 
 export default function HomePage() {
+  const navigate = useNavigate();
+  const isLoggedIn = Boolean(localStorage.getItem("accessToken"));
+
   const [posts, setPosts] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
 
@@ -38,6 +41,12 @@ export default function HomePage() {
 
   const handleCreate = async (event) => {
     event.preventDefault();
+
+    if (!isLoggedIn) {
+      alert("로그인이 필요한 기능입니다.");
+      navigate("/login");
+      return;
+    }
 
     setMessage("");
     setError("");
@@ -108,36 +117,45 @@ export default function HomePage() {
     }
   };
 
-
-
-
   return (
     <main className="home-page">
-      <h1>Alt-과제 게시판</h1>
-        <Link to="/signup">회원가입</Link>
-        <Link to="/login">로그인</Link>
-      <section className="post-create">
-        <h2>게시글 작성</h2>
+      <div className="head">
+        <h1>Alt-과제 게시판</h1>
+        <div id="link">
+          <div className="Home_button"><Link to="/signup">회원가입</Link></div>
+          <div className="Home_button"><Link to="/login">로그인</Link></div>
+        </div>
+      </div>
+      {isLoggedIn ? (
+        <section className="post-create">
+          <h2>게시글 작성</h2>
 
-        <form onSubmit={handleCreate}>
-          <input
-            type="text"
-            placeholder="제목을 입력하세요"
-            value={title}
-            onChange={(event) => setTitle(event.target.value)}
-            required
-          />
+          <form onSubmit={handleCreate}>
+            <input
+              type="text"
+              placeholder="제목을 입력하세요"
+              value={title}
+              onChange={(event) => setTitle(event.target.value)}
+              required
+            />
 
-          <textarea
-            placeholder="내용을 입력하세요"
-            value={content}
-            onChange={(event) => setContent(event.target.value)}
-            required
-          />
+            <textarea
+              placeholder="내용을 입력하세요"
+              value={content}
+              onChange={(event) => setContent(event.target.value)}
+              required
+            />
 
-          <button type="submit">게시글 작성</button>
-        </form>
-      </section>
+            <button type="submit">게시글 작성</button>
+          </form>
+        </section>
+      ) : (
+        <section className="post-create">
+          <h2>게시글 작성</h2>
+          <p>게시글을 작성하려면 로그인이 필요합니다.</p>
+          <Link to="/login">로그인하러 가기</Link>
+        </section>
+      )}
 
       {message && <p className="success-message">{message}</p>}
       {error && <p className="error-message">{error}</p>}

@@ -3,6 +3,10 @@ const BASE_URL = "http://localhost:8080/api";
 function getHeaders() {
   const accessToken = localStorage.getItem("accessToken");
 
+  if (!accessToken) {
+    throw new Error("로그인이 필요한 기능입니다.");
+  }
+
   return {
     "Content-Type": "application/json",
     Authorization: `Bearer ${accessToken}`,
