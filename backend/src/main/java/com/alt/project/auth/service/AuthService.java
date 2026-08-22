@@ -26,9 +26,7 @@ public class AuthService {
 
     @Transactional
     public SignupResponse signup(SignupRequest request) {
-        if (userRepository.existsByEmail(request.getEmail())) {
-            throw AuthException.duplicateEmail();
-        }
+        validateDuplicateEmail(request.getEmail());
 
         UserEntity user = UserEntity.builder()
                 .email(request.getEmail())
@@ -74,6 +72,12 @@ public class AuthService {
     public void deleteMyAccount(String email) {
         UserEntity user = findUserOrThrow(email);
         userRepository.delete(user);
+    }
+
+    private void validateDuplicateEmail(String email) {
+        if (userRepository.existsByEmail(email)) {
+            throw AuthException.duplicateEmail();
+        }
     }
 
     private UserEntity findUserOrThrow(String email) {

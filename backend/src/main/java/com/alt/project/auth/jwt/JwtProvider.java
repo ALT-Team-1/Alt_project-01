@@ -45,4 +45,20 @@ public class JwtProvider {
                 .getBody()
                 .getSubject();
     }
+
+    public boolean validateToken(String token) {
+        try {
+            Jwts.parserBuilder()
+                    .setSigningKey(key)
+                    .build()
+                    .parseClaimsJws(token);
+            return true;
+        } catch (ExpiredJwtException e) {
+            // 만료된 토큰 — false 반환, 예외를 밖으로 던지지 않음
+            return false;
+        } catch (JwtException | IllegalArgumentException e) {
+            // 서명 위조, 형식 오류, 빈 문자열 등 모든 경우 포함
+            return false;
+        }
+    }
 }
