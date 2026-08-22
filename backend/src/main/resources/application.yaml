@@ -2,6 +2,17 @@ spring:
   application:
     name: project
 
+  datasource:
+    url: jdbc:mysql://localhost:3306/ALT_DB?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: lkj0912
+    password: jun100912*
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
 jwt:
   secret: ${JWT_SECRET:this-is-a-temporary-dev-secret-key-please-change-in-production}
   access-token-validity: 3600000
