@@ -1,3 +1,6 @@
 spring:
   application:
     name: project
+jwt:
+  secret: ${JWT_SECRET:this-is-a-temporary-dev-secret-key-please-change-in-production}
+  access-token-validity: 3600000  # 1시간
