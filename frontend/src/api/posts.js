@@ -26,7 +26,7 @@ async function request(url, options = {}) {
 }
 
 export function getPosts() {
-  return request("/posts");
+  return request("/blogs");
 }
 
 export function getPost(id) {
@@ -42,7 +42,7 @@ export function createPost(title, content) {
 }
 
 export function updatePost(id, title, content) {
-  return request(`/posts/${id}`, {
+  return request(`/blogs/${id}`, {
     method: "PATCH",
     headers: getHeaders(),
     body: JSON.stringify({ title, content }),
@@ -50,7 +50,7 @@ export function updatePost(id, title, content) {
 }
 
 export function deletePost(id) {
-  return request(`/posts/${id}`, {
+  return request(`/blogs/${id}`, {
     method: "DELETE",
     headers: getHeaders(),
   });
