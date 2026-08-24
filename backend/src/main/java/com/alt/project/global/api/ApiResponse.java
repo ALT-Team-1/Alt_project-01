@@ -1,4 +1,4 @@
-package com.alt.project.auth.dto.response;
+package com.alt.project.global.api;
 
 import lombok.Getter;
 

@@ -7,7 +7,7 @@ import com.alt.project.auth.dto.response.SignupResponse;
 import com.alt.project.auth.dto.response.TokenResponse;
 import com.alt.project.auth.dto.response.UserResponse;
 import com.alt.project.auth.service.AuthService;
-import com.alt.project.auth.dto.response.ApiResponse;
+import com.alt.project.global.api.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

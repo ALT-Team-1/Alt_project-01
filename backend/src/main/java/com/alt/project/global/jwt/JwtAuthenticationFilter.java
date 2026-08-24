@@ -1,4 +1,4 @@
-package com.alt.project.auth.jwt;
+package com.alt.project.global.jwt;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

@@ -1,4 +1,4 @@
-package com.alt.project.auth.jwt;
+package com.alt.project.global.jwt;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
@@ -54,10 +54,8 @@ public class JwtProvider {
                     .parseClaimsJws(token);
             return true;
         } catch (ExpiredJwtException e) {
-            // 만료된 토큰 — false 반환, 예외를 밖으로 던지지 않음
             return false;
         } catch (JwtException | IllegalArgumentException e) {
-            // 서명 위조, 형식 오류, 빈 문자열 등 모든 경우 포함
             return false;
         }
     }

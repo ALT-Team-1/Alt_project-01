@@ -1,4 +1,4 @@
-package com.alt.project.auth.config; // 본인 프로젝트의 security 설정 패키지 경로
+package com.alt.project.global.config; // 본인 프로젝트의 security 설정 패키지 경로
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

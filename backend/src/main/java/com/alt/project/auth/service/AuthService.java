@@ -7,7 +7,7 @@ import com.alt.project.auth.dto.response.SignupResponse;
 import com.alt.project.auth.dto.response.TokenResponse;
 import com.alt.project.auth.dto.response.UserResponse;
 import com.alt.project.auth.entity.UserEntity;
-import com.alt.project.auth.jwt.JwtProvider;
+import com.alt.project.global.jwt.JwtProvider;
 import com.alt.project.auth.repository.UserRepository;
 import com.alt.project.global.exception.AuthException;
 import lombok.RequiredArgsConstructor;
