@@ -12,6 +12,6 @@ public class LoginRequest {
     @NotBlank(message = "이메일 작성은 필수입니다.")
     private String email;
 
-    @NotBlank(message = "비밀번호 작서은 필수입니다.")
+    @NotBlank(message = "비밀번호 작성은 필수입니다.")
     private String password;
 }

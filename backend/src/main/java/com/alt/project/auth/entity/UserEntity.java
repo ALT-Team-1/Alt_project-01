@@ -27,6 +27,7 @@ public class UserEntity {
     @Column(nullable = false)
     private String nickname;
 
+
     public void updateNickname(String nickname) {
         if (nickname != null && !nickname.isBlank()) {
             this.nickname = nickname;
