@@ -12,66 +12,59 @@ import "../css/Home.css";
 export default function HomePage() {
   const navigate = useNavigate();
   const isLoggedIn = Boolean(localStorage.getItem("accessToken"));
-
   const [posts, setPosts] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
-
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-
   const [editTitle, setEditTitle] = useState("");
   const [editContent, setEditContent] = useState("");
-
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [isEditing, setIsEditing] = useState(false);
 
+  //게시물 목록 들고 오기
+  //불러오는거여서 event 필요X
   const loadPosts = async () => {
     try {
-      const data = await getPosts();
+      const data =
+         await getPosts();
       setPosts(data);
     } catch (err) {
       setError(err.message);
     }
   };
-
   useEffect(() => {
     loadPosts();
   }, []);
 
+  //작성
   const handleCreate = async (event) => {
     event.preventDefault();
-
     if (!isLoggedIn) {
       alert("로그인이 필요한 기능입니다.");
       navigate("/login");
       return;
     }
-
     setMessage("");
     setError("");
-
     try {
       await createPost(title, content);
-
       setTitle("");
       setContent("");
       setMessage("게시글이 작성되었습니다.");
-
       loadPosts();
     } catch (err) {
       setError(err.message);
     }
   };
 
+  //제목 누르면 상세글 나오게 하기
   const handlePostClick = async (id) => {
     setMessage("");
     setError("");
     setIsEditing(false);
-
     try {
       const data = await getPost(id);
-
       setSelectedPost(data);
       setEditTitle(data.title);
       setEditContent(data.content);
@@ -80,37 +73,31 @@ export default function HomePage() {
     }
   };
 
+  //수정
   const handleUpdate = async (event) => {
     event.preventDefault();
-
     try {
       const updatedPost = await updatePost(
         selectedPost.id,
         editTitle,
         editContent
       );
-
       setSelectedPost(updatedPost);
       setIsEditing(false);
       setMessage("게시글이 수정되었습니다.");
-
       loadPosts();
     } catch (err) {
       setError(err.message);
     }
   };
-
+  //삭제
   const handleDelete = async () => {
     const isConfirmed = window.confirm("정말 게시글을 삭제할까요?");
-
     if (!isConfirmed) return;
-
     try {
       await deletePost(selectedPost.id);
-
       setSelectedPost(null);
       setMessage("게시글이 삭제되었습니다.");
-
       loadPosts();
     } catch (err) {
       setError(err.message);
@@ -152,8 +139,15 @@ export default function HomePage() {
       ) : (
         <section className="post-create">
           <h2>게시글 작성</h2>
-          <p>게시글을 작성하려면 로그인이 필요합니다.</p>
-          <Link to="/login">로그인하러 가기</Link>
+          <button
+            type="button"
+            onClick={() => {
+              alert("로그인이 필요한 기능입니다.");
+              navigate("/login");
+            }}
+          >
+            게시글 작성
+          </button>
         </section>
       )}
 

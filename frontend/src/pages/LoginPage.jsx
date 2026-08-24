@@ -3,30 +3,33 @@ import { Link } from "react-router-dom";
 import { login } from "../api/auth.js";
 import "../css/Login.css"
 
+
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (event) => {
+    //폼 제출시 새로 고침되는 기본동작을 막음
+    //prevent = 막다 default = 기본 동작
     event.preventDefault();
-
+    //이전 메세지 초기화
     setMessage("");
     setError("");
-
     try {
       setIsLoading(true);
-
-      const result = await login(email, password);
-
-      localStorage.setItem("accessToken", result.data.accessToken);
-
+      const result = 
+        await login(email, password);
+      localStorage.setItem(
+        "accessToken",
+        result.data.accessToken
+      );
       setMessage("로그인 성공!");
     } catch (err) {
       setError(err.message);
+      //catch 상관 없이 끝난후 실행
     } finally {
       setIsLoading(false);
     }

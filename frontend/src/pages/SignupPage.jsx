@@ -5,13 +5,18 @@ import "../css/Signup.css"
 
 
 export default function SignupPage() {
+  //const 사용이유:화면에 바로바로 표시되게 할려고
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [nickname, setNickname] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+
+  //비동기 처리
   const handleSubmit = async (event) => {
+    //폼 제출시 새로고침 방지
     event.preventDefault();
     setMessage("");
     setError("");
@@ -19,19 +24,35 @@ export default function SignupPage() {
       setError("비밀번호는 8자 이상이어야 합니다.");
       return;
     }
+
+    //try 사용이유:오류나면 catch로 처리할려고
     try {
       setIsLoading(true);
-      const result = await signup(email, password, nickname);
-      localStorage.setItem("accessToken", result.data.accessToken);
-      localStorage.setItem("userId", result.data.userId);
-      localStorage.setItem("nickname", result.data.nickname);
-      setMessage(`${result.data.nickname}님, 회원가입이 완료되었습니다.`);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+      //이멜,패스워드,닉네임전달
+      const result = 
+          await signup(email, password, nickname);
+      localStorage.setItem(
+        "accessToken",
+         result.data.accessToken
+      );
+      localStorage.setItem(
+        "userId",
+        result.data.userId
+      );
+      localStorage.setItem(
+        "nickname",
+        result.data.nickname
+      );
+      setMessage(
+        `${result.data.nickname}님, 회원가입이 완료되었습니다.`
+      );
+
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
 
 
@@ -87,7 +108,7 @@ export default function SignupPage() {
           {isLoading ? "회원가입 중..." : "회원가입"}
         </button>
         <p id="sign_no_account">
-            <span id="sign_no_account_text">이미 계정이 있나요?</span> <Link to="/login"><span id="go_signup">로그인</span></Link>
+            <span id="sign_no_account_text">이미 계정이 있나요?</span> <Link to="/signup"><span id="go_signup">로그인</span></Link>
         </p>
         </div>
       </form>
