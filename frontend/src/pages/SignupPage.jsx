@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signup } from "../api/auth.js";
 import "../css/Signup.css"
 
 
 export default function SignupPage() {
+  const navigate = useNavigate();
   //const 사용이유:화면에 바로바로 표시되게 할려고
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -46,6 +47,7 @@ export default function SignupPage() {
       setMessage(
         `${result.data.nickname}님, 회원가입이 완료되었습니다.`
       );
+      navigate("/", { replace: true });
 
       } catch (err) {
         setError(err.message);
@@ -108,7 +110,7 @@ export default function SignupPage() {
           {isLoading ? "회원가입 중..." : "회원가입"}
         </button>
         <p id="sign_no_account">
-            <span id="sign_no_account_text">이미 계정이 있나요?</span> <Link to="/signup"><span id="go_signup">로그인</span></Link>
+            <span id="sign_no_account_text">이미 계정이 있나요?</span> <Link to="/login"><span id="go_signup">로그인</span></Link>
         </p>
         </div>
       </form>

@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { login } from "../api/auth.js";
+import { Link, useNavigate } from "react-router-dom";
+import { getMyInfo, login } from "../api/auth.js";
 import "../css/Login.css"
 
 
 export default function LoginPage() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -22,11 +23,21 @@ export default function LoginPage() {
       setIsLoading(true);
       const result = 
         await login(email, password);
+      const userResult = await getMyInfo(result.data.accessToken);
       localStorage.setItem(
         "accessToken",
         result.data.accessToken
       );
+      localStorage.setItem(
+        "userId",
+        userResult.data.id
+      );
+      localStorage.setItem(
+        "nickname",
+        userResult.data.nickname
+      );
       setMessage("로그인 성공!");
+      navigate("/", { replace: true });
     } catch (err) {
       setError(err.message);
       //catch 상관 없이 끝난후 실행

@@ -11,7 +11,10 @@ import "../css/Home.css";
 
 export default function HomePage() {
   const navigate = useNavigate();
-  const isLoggedIn = Boolean(localStorage.getItem("accessToken"));
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    Boolean(localStorage.getItem("accessToken"))
+  );
+  const nickname = localStorage.getItem("nickname");
   const [posts, setPosts] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
   const [title, setTitle] = useState("");
@@ -104,13 +107,38 @@ export default function HomePage() {
     }
   };
 
+  //로그아웃
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("nickname");
+    setIsLoggedIn(false);
+    setSelectedPost(null);
+    setIsEditing(false);
+    setTitle("");
+    setContent("");
+    setError("");
+    setMessage("로그아웃되었습니다.");
+  };
+
   return (
     <main className="home-page">
       <div className="head">
-        <h1>Alt-과제 게시판</h1>
+        <h1 id="Home_main_text">Alt-과제 게시판</h1>
         <div id="link">
-          <div className="Home_button"><Link to="/signup">회원가입</Link></div>
-          <div className="Home_button"><Link to="/login">로그인</Link></div>
+          {isLoggedIn ? (
+            <div className="user-menu">
+              <span className="user-name">{nickname || "사용자"}님</span>
+              <button type="button" className="logout-button" onClick={handleLogout}>
+                로그아웃
+              </button>
+            </div>
+          ) : (
+            <>
+              <div className="Home_button"><Link to="/signup">회원가입</Link></div>
+              <div className="Home_button"><Link to="/login">로그인</Link></div>
+            </>
+          )}
         </div>
       </div>
       {isLoggedIn ? (
