@@ -43,3 +43,19 @@ export async function login(email, password) {
 
   return result;
 }
+
+//로그인한 사용자 정보 조회
+export async function getMyInfo(accessToken) {
+  const response = await fetch(`${BackendPort}/auth/me`, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+  const result = await response.json();
+
+  if (!response.ok) {
+    throw new Error(result.error?.message || "사용자 정보를 불러오지 못했습니다.");
+  }
+
+  return result;
+}
