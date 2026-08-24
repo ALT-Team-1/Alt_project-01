@@ -139,8 +139,15 @@ export default function HomePage() {
       ) : (
         <section className="post-create">
           <h2>게시글 작성</h2>
-          <p>게시글을 작성하려면 로그인이 필요합니다.</p>
-          <Link to="/login">로그인하러 가기</Link>
+          <button
+            type="button"
+            onClick={() => {
+              alert("로그인이 필요한 기능입니다.");
+              navigate("/login");
+            }}
+          >
+            게시글 작성
+          </button>
         </section>
       )}
 
