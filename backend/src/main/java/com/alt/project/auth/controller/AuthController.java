@@ -41,8 +41,7 @@ public class AuthController {
     }
 
     @PatchMapping("/me")
-    public ResponseEntity<ApiResponse<UserResponse>> updateMyInfo(
-            @RequestBody UserUpdateRequest request,
+    public ResponseEntity<ApiResponse<UserResponse>> updateMyInfo(@Valid @RequestBody UserUpdateRequest request,
             Authentication authentication
     ) {
         UserResponse response = authService.updateMyInfo(authentication.getName(), request);

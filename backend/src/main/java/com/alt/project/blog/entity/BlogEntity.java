@@ -1,5 +1,6 @@
 package com.alt.project.blog.entity;
 
+import com.alt.project.auth.entity.UserEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,8 +10,8 @@ import lombok.*;
 @Getter
 @Table(name = "posts")
 @Builder
-
 public class BlogEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,8 +23,8 @@ public class BlogEntity {
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "author_id",nullable = false)
-    private String author;
+    @JoinColumn(name = "author_id", nullable = false)
+    private UserEntity author;
 
     public void update(String title, String content) {
         if (title != null && !title.isBlank()) {

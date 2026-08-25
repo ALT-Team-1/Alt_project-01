@@ -18,7 +18,7 @@ public class BlogResponse {
                 entity.getId(),
                 entity.getTitle(),
                 entity.getContent(),
-                entity.getAuthor()
+                entity.getAuthor().getNickname()
         );
     }
 }
