@@ -27,7 +27,7 @@ public class UserEntity {
     @Column(nullable = false)
     private String nickname;
 
-
+    // 닉네임 값이 널 또는 공백이 아닐 때 변경
     public void updateNickname(String nickname) {
         if (nickname != null && !nickname.isBlank()) {
             this.nickname = nickname;

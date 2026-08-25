@@ -27,16 +27,19 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
+
+    // 비밀번호 비시크립트 해시 암호화 설정
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+
+    // 필터체인으로 보안 규칙을 설정 (REST API 환경으로 jwt 토큰 기반 인증을 수행하므로 csrf를 끄고 세션을 무상태로 둠)
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
-                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/signup", "/api/auth/login").permitAll()
@@ -49,6 +52,7 @@ public class SecurityConfig {
         return http.build();
     }
 
+    // FE에서 BE로 api 요청을 보낼 때, 로컬 환경이나 CRUD 메서드, 쿠키 등 차단당하지 않도록 설정
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();

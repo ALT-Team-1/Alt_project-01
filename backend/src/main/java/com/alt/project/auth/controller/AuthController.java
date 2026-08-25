@@ -22,24 +22,28 @@ public class AuthController {
 
     private final AuthService authService;
 
+    // 올바른 이메일과 비번 등의 요청이 왔는 지 유효성 검사하고 성공 시 201 코드와 리스폰스 객체를 반환
     @PostMapping("/signup")
     public ResponseEntity<ApiResponse<SignupResponse>> signup(@Valid @RequestBody SignupRequest request) {
         SignupResponse response = authService.signup(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.success(response));
     }
 
+    // 올바른 이메일과 비번 요청이 왔는 지 유효성 검사하고 성공 시 jwt 토큰 발급 결과를 담아 200 코드와 반환됨
     @PostMapping("/login")
     public ResponseEntity<ApiResponse<TokenResponse>> login(@Valid @RequestBody LoginRequest request) {
         TokenResponse response = authService.login(request);
         return ResponseEntity.ok(ApiResponse.success(response));
     }
 
+    // 인증된 유저의 정보를 조회
     @GetMapping("/me")
     public ResponseEntity<ApiResponse<UserResponse>> getMyInfo(Authentication authentication) {
         UserResponse response = authService.getMyInfo(authentication.getName());
         return ResponseEntity.ok(ApiResponse.success(response));
     }
 
+    // 인증된 유저의 정보를 수정
     @PatchMapping("/me")
     public ResponseEntity<ApiResponse<UserResponse>> updateMyInfo(@Valid @RequestBody UserUpdateRequest request,
             Authentication authentication
@@ -48,6 +52,7 @@ public class AuthController {
         return ResponseEntity.ok(ApiResponse.success(response));
     }
 
+    // 인증된 유저의 계정을 삭제
     @DeleteMapping("/me")
     public ResponseEntity<Void> deleteMyAccount(Authentication authentication) {
         authService.deleteMyAccount(authentication.getName());
