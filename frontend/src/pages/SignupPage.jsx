@@ -3,10 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { signup } from "../api/auth.js";
 import "../css/Signup.css"
 
-
 export default function SignupPage() {
   const navigate = useNavigate();
-  //const 사용이유:화면에 바로바로 표시되게 할려고
+  //useState 사용이유:화면에 바로바로 표시되게 할려고
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [nickname, setNickname] = useState("");
