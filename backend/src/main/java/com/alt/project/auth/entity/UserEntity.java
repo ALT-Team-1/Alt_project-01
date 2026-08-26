@@ -34,6 +34,7 @@ public class UserEntity {
         }
     }
 
+    // 비밀번호 값이 널 또는 공백값이 아닐 때 변경
     public void updatePassword(String encodedPassword) {
         if (encodedPassword != null && !encodedPassword.isBlank()) {
             this.password = encodedPassword;
