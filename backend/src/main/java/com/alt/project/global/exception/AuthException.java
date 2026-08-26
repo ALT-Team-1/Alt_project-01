@@ -3,7 +3,7 @@ package com.alt.project.global.exception;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
-// auth에 대한 예외 처리 클래스
+// auth에 대한 예외 처리 클래 (인증 중에서 발생한 오류)
 @Getter
 public class AuthException extends RuntimeException {
 

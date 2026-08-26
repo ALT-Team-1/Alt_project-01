@@ -3,7 +3,7 @@ package com.alt.project.global.exception;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
-// blog에 대한 예외 처리 클래스
+// blog에 대한 예외 처리 클래류 (게시물에 대한 기능을 수행 중에 발생한 오류)
 @Getter
 public class BlogException extends RuntimeException {
 
