@@ -24,13 +24,12 @@ public class JwtProvider {
     private Key key;
 
     // 스프링이 이 빈을 생성하고 @Value 주입까지 끝낸 직후 딱 한 번 자동 실행됨
-    // (문자열 -> Key 변환을 매번 하지 않고 여기서 미리 한 번만 해둠)
     @PostConstruct
     protected void init() {
         this.key = Keys.hmacShaKeyFor(secretKey.getBytes());
     }
 
-    // 로그인/회원가입 성공 시 호출 - email을 기반으로 새 JWT 토큰 문자열을 생성해 반환
+    // 로그인/회원가입 성공 시 호출 - email을 기반으로 새 jwt 토큰 생성해 반환
     public String createToken(String email) {
         Date now = new Date();
         Date expiry = new Date(now.getTime() + accessTokenValidity); // 지금 시각 + 유효기간 = 만료 시각

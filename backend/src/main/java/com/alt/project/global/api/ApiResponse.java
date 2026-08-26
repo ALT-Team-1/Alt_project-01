@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 public class ApiResponse<T> {
     private final boolean success;
-    private final T data;
+    private final T data; // 상황에 따라 들어가는 데이터가 다르기 때문에 제네릭 사용
     private final ErrorResponse error;
 
     private ApiResponse(boolean success, T data, ErrorResponse error) {
