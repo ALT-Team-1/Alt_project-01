@@ -2,6 +2,7 @@ package com.alt.project.global.api;
 
 import lombok.Getter;
 
+// auth api의 모든 성공/실패 응답을 하나의 통일된 제이슨 틀로 감싸주는 클래스
 @Getter
 public class ApiResponse<T> {
     private final boolean success;

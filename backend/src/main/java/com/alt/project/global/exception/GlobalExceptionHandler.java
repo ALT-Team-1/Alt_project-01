@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.Map;
 
+// 다른 클래스가 처리하지 못하는 예외를 처리하는 클래스
 @Slf4j
 @Order(Ordered.LOWEST_PRECEDENCE)
 @RestControllerAdvice
