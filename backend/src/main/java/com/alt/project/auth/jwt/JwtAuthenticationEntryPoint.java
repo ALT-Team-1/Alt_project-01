@@ -1,4 +1,4 @@
-package com.alt.project.global.jwt;
+package com.alt.project.auth.jwt;
 
 import com.alt.project.global.api.ApiResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
